@@ -22,12 +22,7 @@ class App extends Component {
 
           options={
         {
-        background: {
-          color: {
-              value: "#0d47a1",
-          },
-        },
-        fpsLimit: 120,
+        fpsLimit: 30,
         interactivity: {
           events: {
             onClick: {
@@ -52,10 +47,10 @@ class App extends Component {
         },
         particles: {
           color: {
-            value: "#ffffff",
+            value: "black",
           },
           links: {
-            color: "#ffffff",
+            color: "#aaaaaa",
             distance: 150,
             enable: true,
             opacity: 0.5,
