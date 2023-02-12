@@ -66,7 +66,7 @@ class App extends Component {
               default: "bounce",
             },
             random: false,
-            speed: 6,
+            speed: 3,
             straight: false,
           },
           number: {
@@ -74,16 +74,16 @@ class App extends Component {
               enable: true,
               area: 800,
             },
-            value: 80,
+            value: 190,
           },
           opacity: {
             value: 0.5,
           },
           shape: {
-            type: "circle",
+            type: "circles",
           },
           size: {
-            value: { min: 1, max: 5 },
+            value: { min: 0, max: 1 },
           },
         },
         detectRetina: true,
