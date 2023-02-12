@@ -47,10 +47,10 @@ class App extends Component {
         },
         particles: {
           color: {
-            value: "black",
+            value: "#000003",
           },
           links: {
-            color: "#aaaaaa",
+            color: "#000003",
             distance: 150,
             enable: true,
             opacity: 0.5,
