@@ -74,7 +74,7 @@ class App extends Component {
               enable: true,
               area: 800,
             },
-            value: 190,
+            value: 120,
           },
           opacity: {
             value: 0.5,
