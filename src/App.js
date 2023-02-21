@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-
 import FaceRecognition from './components/FaceRecognition/FaceRecognition.js';
 import ImageLinkForm from './components/ImageLinkForm/ImageLinkForm.js';
 import ParticlesBG from './components/ParticlesBG/ParticlesBG.js';
 import Navigation from './components/Navigation/Navigation.js';
+import Register from './components/Register/Register.js';
+import SignIn from './components/SignIn/SignIn.js';
 import Logo from './components/Logo/Logo.js';
 import Rank from './components/Rank/Rank.js';
 import './App.css';
@@ -22,6 +23,7 @@ class App extends Component {
             input: '',
             imageUrl: '',
             box: {},
+            route: 'signin'
         } 
     }
     
@@ -76,26 +78,39 @@ class App extends Component {
         };            
 
         fetch("https://api.clarifai.com/v2/models/" + MODEL_ID + "/versions/" + MODEL_VERSION_ID + "/outputs", requestOptions)
-            .then(response => response.json())
+            .then(response => (response.json()))
             .then(result => this.displayFaceBox(this.calculateFaceLocation(result.outputs[0].data.regions[0].region_info.bounding_box)))
             .catch(error => console.log('error', error));
     };
 
+    onRouteChange = (route) => {
+        this.setState({route: route})
+    }
+
   render() {
-      return (
-          <div className="App">
-            <ParticlesBG />
-            <Navigation />
+    return (
+      <div className="App">
+      <ParticlesBG />
+      <Navigation onRouteChange={this.onRouteChange}/>
+      { this.state.route === 'home'
+        ? <div>
             <Logo />
-            <Rank />       
+            <Rank />      
             <ImageLinkForm 
                 onInputChange={this.onInputChange} 
                 onButtonSubmit={this.onButtonSubmit}            
             />
             <FaceRecognition box={this.state.box} imageUrl={this.state.imageUrl} />
           </div>
-      );
+        : (
+            this.state.route === 'signin'
+            ? <SignIn onRouteChange={this.onRouteChange} />
+            : <Register onRouteChange={this.onRouteChange} />
+          )         
+      }
+    </div>
+    );
   }
 }
 
-export default App;
+export default App;         
