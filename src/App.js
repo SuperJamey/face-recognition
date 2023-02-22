@@ -26,7 +26,7 @@ class App extends Component {
             route: 'signin',
             isSignedIn: false
         } 
-    }
+    }p
     
     calculateFaceLocation = (resp) => {
         console.log(resp);
