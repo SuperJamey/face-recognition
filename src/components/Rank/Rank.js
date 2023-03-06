@@ -9,7 +9,6 @@ const Rank = ({ name, entries }) => {
           <div className='f1 black'>
               {entries}
           </div>
-
         </div>
     );
 }

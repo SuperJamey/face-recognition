@@ -39,8 +39,14 @@ class App extends Component {
         name: data.name,
         email: data.email,
         entries: data.entries,
-        joined: data.joined,
+        joined: data.joined
       }})
+    }
+
+    componentDidMount() {
+      fetch('http://localhost:3000')
+      .then(response => response.json())
+      .then(console.log)
     }
     
     calculateFaceLocation = (resp) => {
@@ -107,10 +113,10 @@ class App extends Component {
               .then(response => response.json())
               .then(count => {
                 this.setState(Object.assign(this.state.user, {entries: count}))
-              })
+              })             
+            .catch(err => console.log(err))
             )
-            .catch(error => console.log('error', error));   
-    };
+          }
 
     onRouteChange = (route) => {
       if (route === 'signout') {
@@ -118,7 +124,7 @@ class App extends Component {
       } else if (route === 'home') {
         this.setState({isSignedIn: true})
       }
-        this.setState({route: route});
+        this.setState({route: route})
     }
 
   render() {
@@ -126,7 +132,7 @@ class App extends Component {
     return (
       <div className="App">
       <ParticlesBG />
-      <Navigation isSignedIn={isSignedIn} onRouteChange={this.onRouteChange}/>
+      <Navigation isSignedIn={isSignedIn} onRouteChange={this.onRouteChange} />
       { route === 'home'
         ? <div>
             <Logo />
