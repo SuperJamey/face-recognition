@@ -14,7 +14,6 @@ const RenderBG = () => {
         <Particles
             id="tsparticles"
             init={particlesInit}
-
             options={{
                 fpsLimit: 30,
                 interactivity: {
@@ -39,7 +38,7 @@ const RenderBG = () => {
                         },
                     },
                 },
-
+                
                 particles: {
                     color: {
                         value: "#027438",

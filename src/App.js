@@ -13,7 +13,22 @@ const PAT = '64a6c3e0d1b749048656fbeb71f289a6';
 const USER_ID = 'superjamey';       
 const APP_ID = 'my-first-application';
 const MODEL_ID = 'face-detection';
-const MODEL_VERSION_ID = '6dc7e46bc9124c5c8824be4822abe105';    
+const MODEL_VERSION_ID = '6dc7e46bc9124c5c8824be4822abe105';  
+
+const initialState = {
+    input: '',
+    imageUrl: '',
+    box: {},
+    route: 'signin',
+    isSignedIn: false,
+    user: {
+      id: '',
+      name: '',
+      email: '',
+      entries: 0,
+      joined: '' 
+    }
+} 
 class App extends Component {
     constructor() {
         super()
@@ -43,20 +58,12 @@ class App extends Component {
       }})
     }
 
-    componentDidMount() {
-      fetch('http://localhost:3000')
-      .then(response => response.json())
-      .then(console.log)
-    }
-    
     calculateFaceLocation = (resp) => {
         console.log(resp);
         const clarifaiFace = resp;
         const image = document.getElementById('inputimage');
         const width = Number(image.width);
         const height = Number(image.height);
-        console.log(image.width);
-        console.log(image.height);
         return {
             left_col: (clarifaiFace.left_col) * width,
             top_row: clarifaiFace.top_row * height,
@@ -95,8 +102,8 @@ class App extends Component {
         headers: {
             'Accept': 'application/json',
             'Authorization': 'Key ' + PAT
-        },
-        body: raw
+          },
+          body: raw
         };            
 
         fetch("https://api.clarifai.com/v2/models/" + MODEL_ID + "/versions/" + MODEL_VERSION_ID + "/outputs", requestOptions)
@@ -113,14 +120,15 @@ class App extends Component {
               .then(response => response.json())
               .then(count => {
                 this.setState(Object.assign(this.state.user, {entries: count}))
-              })             
-            .catch(err => console.log(err))
+              })
+              .catch(console.log)             
+            .catch(console.log)
             )
           }
 
     onRouteChange = (route) => {
       if (route === 'signout') {
-        this.setState({isSignedIn: false})
+        this.setState(initialState)
       } else if (route === 'home') {
         this.setState({isSignedIn: true})
       }
