@@ -110,7 +110,7 @@ class App extends Component {
             .then(response => (response.json()))
             .then(result => this.displayFaceBox(this.calculateFaceLocation(result.outputs[0].data.regions[0].region_info.bounding_box)))
             .then(
-              fetch('http://localhost:3000/image', {
+              fetch('https://smartbrainserver-f9ol.onrender.com/3000/image', {
                 method: 'put',
                 headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify({
