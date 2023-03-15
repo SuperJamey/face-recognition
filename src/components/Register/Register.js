@@ -4,9 +4,9 @@ class Register extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      email: '',
-      password: '',
-      name: ''
+      email: 'none@none.com',
+      password: 'nobody',
+      name: 'noone'
     }
   }
 
@@ -24,6 +24,7 @@ class Register extends React.Component {
 
   onSubmitSignIn = () => {
     console.log('onSubmitSignIn');
+    console.log(this.state.email);
     fetch('https://smartbrainserver-f9ol.onrender.com/register', {
       method: 'post',
       headers: {'Content-Type': 'application/json'},
