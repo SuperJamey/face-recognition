@@ -18,6 +18,7 @@ class SignIn extends React.Component {
   }
 
   onSubmitSignIn = () => {
+    console.log('sign in button pressed');
     fetch("https://smartbrainserver-f9ol.onrender.com/signin", {
       method: "post",
       headers: {'Content-Type': 'application/json'},
@@ -33,7 +34,8 @@ class SignIn extends React.Component {
           this.props.loadUser(user)
           this.props.onRouteChange('home');
         }
-      }) 
+      })
+      .catch(console.error());
   }
 
   render() {

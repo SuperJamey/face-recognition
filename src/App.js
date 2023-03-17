@@ -122,9 +122,9 @@ class App extends Component {
                 this.setState(Object.assign(this.state.user, {entries: count}))
               })
               .catch(console.log)             
-            .catch(console.log)
             )
-          }
+        .catch(console.log)
+        }
 
     onRouteChange = (route) => {
       if (route === 'signout') {
